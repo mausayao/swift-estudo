@@ -9,7 +9,7 @@
 import UIKit
 
 class MealsTableViewController: UITableViewController {
-    let meals = [Meal(names: "Feijão com arroz", happiness: 5),
+    var meals = [Meal(names: "Feijão com arroz", happiness: 5),
     Meal(names: "Bolo de cenoura", happiness: 3)]
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -22,5 +22,16 @@ class MealsTableViewController: UITableViewController {
         let cell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: nil)
         cell.textLabel!.text = meal.names
         return cell
+    }
+    
+    func addMeal(meal: Meal) {
+        meals.append(meal)
+        tableView.reloadData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let viewController = segue.destination as! ViewController
+        viewController.tablesMeal = self
+        
     }
 }
