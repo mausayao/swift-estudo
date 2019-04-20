@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E9BBF0E2226BBE21005BA383 /* MealsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BBF0E1226BBE21005BA383 /* MealsTableViewController.swift */; };
 		E9D9D442226567230014CB95 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D9D441226567230014CB95 /* AppDelegate.swift */; };
 		E9D9D444226567230014CB95 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D9D443226567230014CB95 /* ViewController.swift */; };
 		E9D9D447226567230014CB95 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9D9D445226567230014CB95 /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E9BBF0E1226BBE21005BA383 /* MealsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsTableViewController.swift; sourceTree = "<group>"; };
 		E9D9D43E226567230014CB95 /* eggplant-brownie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "eggplant-brownie.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9D9D441226567230014CB95 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9D9D443226567230014CB95 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				E9D9D443226567230014CB95 /* ViewController.swift */,
+				E9BBF0E1226BBE21005BA383 /* MealsTableViewController.swift */,
 			);
 			path = viewcontrolles;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9BBF0E2226BBE21005BA383 /* MealsTableViewController.swift in Sources */,
 				E9E81EC5226A7F7800EDDD74 /* Item.swift in Sources */,
 				E9D9D444226567230014CB95 /* ViewController.swift in Sources */,
 				E9E81EC3226A7EDE00EDDD74 /* Meal.swift in Sources */,
