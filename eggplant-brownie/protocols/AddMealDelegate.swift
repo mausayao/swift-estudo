@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol ViewControllerDelegate {
+protocol AddMealDelegate {
     func add(_ meal: Meal)
 }

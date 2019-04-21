@@ -12,7 +12,7 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var nameField: UITextField?
     @IBOutlet weak var happinessField: UITextField?
-    var delegate: ViewControllerDelegate?
+    var delegate: AddMealDelegate?
     
     @IBAction func add(_ sender: Any) {
         if nameField == nil || happinessField == nil {
