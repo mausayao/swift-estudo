@@ -15,8 +15,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var delegate: AddMealDelegate?
     
     var items = [Item(name: "Feijão", calories: 30),
-                Item(name: "Arroz", calories: 10)
+                Item(name: "Arroz", calories: 10),
+                Item(name: "Chocolate", calories: 30),
+                Item(name: "Macarrão", calories: 10),
+                Item(name: "Carne", calories: 30),
+                Item(name: "Ovo", calories: 10),
+                Item(name: "Oleo", calories: 30),
+                Item(name: "Azeite", calories: 10)
                  ]
+    var selected = Array<Item>()
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
@@ -33,8 +41,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if let cell = tableView.cellForRow(at: indexPath) {
             if(cell.accessoryType == UITableViewCell.AccessoryType.none){
                 cell.accessoryType = UITableViewCell.AccessoryType.checkmark
+                let row  = indexPath.row
+                selected.append(items[row])
             } else {
                 cell.accessoryType = UITableViewCell.AccessoryType.none
+                let item = items[indexPath.row]
+                if let position = selected.firstIndex(of: item) {
+                    selected.remove(at: position)
+                }
             }
         }
     }
@@ -45,8 +59,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         let name = nameField!.text!
         if let happiness = Int(happinessField!.text!){
-            let meal = Meal(names: name, happiness: happiness)
-            print("comi \(String(describing: meal.names)) e happy \(String(describing: meal.happiness))")
+            let meal = Meal(names: name, happiness: happiness, items: selected)
+            print("comi \(String(describing: meal.names)) e happy \(String(describing: meal.happiness)) items -> \(meal.items)")
             
             if(delegate == nil){
                 return
