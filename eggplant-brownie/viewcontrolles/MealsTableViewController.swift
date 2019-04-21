@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MealsTableViewController: UITableViewController {
+class MealsTableViewController: UITableViewController, ViewControllerDelegate {
     var meals = [Meal(names: "Feijão com arroz", happiness: 5),
     Meal(names: "Bolo de cenoura", happiness: 3)]
     
@@ -32,7 +32,7 @@ class MealsTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "addMeal"){
             let viewController = segue.destination as! ViewController
-            viewController.tablesMeal = self
+            viewController.delegate = self
         }
     }
 }

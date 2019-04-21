@@ -12,7 +12,7 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var nameField: UITextField?
     @IBOutlet weak var happinessField: UITextField?
-    var tablesMeal: MealsTableViewController?
+    var delegate: ViewControllerDelegate?
     
     @IBAction func add(_ sender: Any) {
         if nameField == nil || happinessField == nil {
@@ -23,11 +23,11 @@ class ViewController: UIViewController {
             let meal = Meal(names: name, happiness: happiness)
             print("comi \(String(describing: meal.names)) e happy \(String(describing: meal.happiness))")
             
-            if(tablesMeal == nil){
+            if(delegate == nil){
                 return
             }
             
-            tablesMeal!.add(meal)
+            delegate!.add(meal)
             
             if let navigation = navigationController{
                 navigation.popViewController(animated: true)
