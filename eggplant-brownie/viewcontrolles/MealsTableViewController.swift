@@ -24,14 +24,15 @@ class MealsTableViewController: UITableViewController {
         return cell
     }
     
-    func addMeal(meal: Meal) {
+    func add(_ meal: Meal) {
         meals.append(meal)
         tableView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let viewController = segue.destination as! ViewController
-        viewController.tablesMeal = self
-        
+        if(segue.identifier == "addMeal"){
+            let viewController = segue.destination as! ViewController
+            viewController.tablesMeal = self
+        }
     }
 }

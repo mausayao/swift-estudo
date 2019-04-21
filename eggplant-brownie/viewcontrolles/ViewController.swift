@@ -27,7 +27,7 @@ class ViewController: UIViewController {
                 return
             }
             
-            tablesMeal?.addMeal(meal: meal)
+            tablesMeal!.add(meal)
             
             if let navigation = navigationController{
                 navigation.popViewController(animated: true)
