@@ -8,11 +8,26 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDataSource {
 
     @IBOutlet weak var nameField: UITextField?
     @IBOutlet weak var happinessField: UITextField?
     var delegate: AddMealDelegate?
+    
+    var items = [Item(name: "Feijão", calories: 30),
+                Item(name: "Arroz", calories: 10)
+                 ]
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return items.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let row = indexPath.row
+        let item = items[row]
+        let cel = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: nil)
+        cel.textLabel!.text = item.name
+        return cel
+    }
     
     @IBAction func add(_ sender: Any) {
         if nameField == nil || happinessField == nil {
