@@ -26,4 +26,13 @@ class Meal {
         }
         return total
     }
+    
+    func detail() -> String{
+        var message = self.names
+        for item in self.items {
+            message += "\nNome:\(item.name), Calorias: \(item.calories)"
+        }
+        
+        return message
+    }
 }

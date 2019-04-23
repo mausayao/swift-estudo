@@ -40,7 +40,7 @@ class MealsTableViewController: UITableViewController, AddMealDelegate {
     }
     
     func alert(meal: Meal) {
-        let alert = UIAlertController(title: meal.names, message: "Felicidade \(meal.happiness)", preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: meal.names, message: meal.detail(), preferredStyle: UIAlertController.Style.alert)
         
         let action = UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil)
         
