@@ -21,7 +21,22 @@ class MealsTableViewController: UITableViewController, AddMealDelegate {
         let meal = meals[row]
         let cell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: nil)
         cell.textLabel!.text = meal.names
+        
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(showDetail))
+        cell.addGestureRecognizer(longPress)
+        
         return cell
+    }
+    
+    @objc func showDetail(recognizer: UILongPressGestureRecognizer) {
+        if(recognizer.state == UILongPressGestureRecognizer.State.began){
+            let cell = recognizer.view as! UITableViewCell
+            if let indexPath = tableView.indexPath(for: cell) {
+                let row = indexPath.row
+                let meal = meals[row]
+                print("Foi pressionado \(meal.names)")
+            }
+        }
     }
     
     func add(_ meal: Meal) {
