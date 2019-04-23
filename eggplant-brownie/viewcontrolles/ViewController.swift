@@ -24,11 +24,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 Item(name: "Azeite", calories: 10)
                  ]
     var selected = Array<Item>()
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView?
     
     func add(_ item: Item) {
         items.append(item)
-        tableView.reloadData()
+        if let table = tableView{
+            table.reloadData()
+        } else {
+            Alert(controller: self).show(message: "Não foi possivel carregar os dados.")
+        }
+       
     }
     
     override func viewDidLoad() {
@@ -40,6 +45,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let itemViewController = ItemViewController(delegate: self)
         if let navigation = navigationController {
             navigation.pushViewController(itemViewController, animated: true)
+        } else {
+            Alert(controller: self).show()
         }
     }
     
