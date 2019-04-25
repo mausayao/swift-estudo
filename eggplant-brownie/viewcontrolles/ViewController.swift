@@ -78,26 +78,35 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
+    func convertToInt(_ text: String?) -> Int? {
+        if let number = text {
+            return Int(number)
+        }
+        return nil
+    }
+    
+    func getMealFromForm() -> Meal? {
+        if let name = self.nameField?.text {
+            if let happness = self.convertToInt(self.happinessField?.text) {
+                return Meal(names: name, happiness: happness )
+            }
+        }
+        return nil
+    }
+    
     @IBAction func add(_ sender: Any) {
-        if nameField == nil || happinessField == nil {
+        if let meal = self.getMealFromForm() {
+            if let delegate = self.delegate {
+                delegate.add(meal)
+                if let navigation = self.navigationController {
+                    navigation.popViewController(animated: true)
+                } else {
+                    Alert(controller: self).show(message: "Não foi possivel volta para refeições, mas sua refeição foi adicionado.")
+                }
+            }
             return
         }
-        let name = nameField!.text!
-        if let happiness = Int(happinessField!.text!){
-            let meal = Meal(names: name, happiness: happiness, items: selected)
-            print("comi \(String(describing: meal.names)) e happy \(String(describing: meal.happiness)) items -> \(meal.items)")
-            
-            if(delegate == nil){
-                return
-            }
-            
-            delegate!.add(meal)
-            
-            if let navigation = navigationController{
-                navigation.popViewController(animated: true)
-            }
-        }
-       
+        Alert(controller: self).show()
     }
     
 }
