@@ -34,18 +34,12 @@ class MealsTableViewController: UITableViewController, AddMealDelegate {
             if let indexPath = tableView.indexPath(for: cell) {
                 let row = indexPath.row
                 let meal = meals[row]
-                alert(meal: meal)
+                RemoveMealViewController(viewController: self).show(meal, handler: {action in
+                    self.meals.remove(at: row)
+                    self.tableView.reloadData()
+                })
             }
         }
-    }
-    
-    func alert(meal: Meal) {
-        let alert = UIAlertController(title: meal.names, message: meal.detail(), preferredStyle: UIAlertController.Style.alert)
-        
-        let action = UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil)
-        
-        alert.addAction(action)
-        self.present(alert, animated: true, completion: nil)
     }
     
     func add(_ meal: Meal) {
