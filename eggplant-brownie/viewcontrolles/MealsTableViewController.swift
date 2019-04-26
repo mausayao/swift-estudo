@@ -44,6 +44,16 @@ class MealsTableViewController: UITableViewController, AddMealDelegate {
     
     func add(_ meal: Meal) {
         meals.append(meal)
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let dir = paths[0]
+        do {
+            let archive = "eggplant-brownie-meals.dados"
+            let data = try NSKeyedArchiver.archivedData(withRootObject: meal, requiringSecureCoding: false)
+            try data.write(to: dir.appendingPathComponent(archive))
+        } catch {
+            Alert(controller: self).show()
+        }
+        
         tableView.reloadData()
     }
     

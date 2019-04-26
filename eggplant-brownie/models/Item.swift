@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Item: Equatable, NSCoding {
+class Item: NSObject, NSCoding {
    
     let name:String
     let calories:Double
