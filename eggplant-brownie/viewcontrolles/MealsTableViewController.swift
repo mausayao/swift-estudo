@@ -12,6 +12,16 @@ class MealsTableViewController: UITableViewController, AddMealDelegate {
     var meals = [Meal(names: "Feijão com arroz", happiness: 5),
     Meal(names: "Bolo de cenoura", happiness: 3)]
     
+    override func viewDidLoad() {
+        let file = getPath().absoluteString
+        print(file)
+            if let loaded = NSKeyedUnarchiver.unarchiveObject(withFile: file) {
+                self.meals = loaded as! Array<Meal>
+            } else {
+                 Alert(controller: self).show()
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return meals.count
     }
@@ -44,17 +54,24 @@ class MealsTableViewController: UITableViewController, AddMealDelegate {
     
     func add(_ meal: Meal) {
         meals.append(meal)
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        let dir = paths[0]
         do {
-            let archive = "eggplant-brownie-meals.dados"
             let data = try NSKeyedArchiver.archivedData(withRootObject: meal, requiringSecureCoding: false)
-            try data.write(to: dir.appendingPathComponent(archive))
+            let file = getPath()
+            try data.write(to: file)
         } catch {
             Alert(controller: self).show()
         }
         
         tableView.reloadData()
+    }
+    
+    func getPath() -> URL {
+        let userPaths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documents = userPaths[0]
+        let archive = "eggplant-brownie-meals.dados"
+        let file = documents.appendingPathComponent(archive)
+        
+        return file
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
